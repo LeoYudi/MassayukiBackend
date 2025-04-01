@@ -24,4 +24,15 @@ const create = async (ctx: Context<{ Bindings: Bindings }>, name: string) => {
   }
 };
 
-export { create, list };
+const remove = async (ctx: Context<{ Bindings: Bindings }>, id: number) => {
+  const repo = new ProductCategoryRepository(ctx.env.DB);
+
+  try {
+    const result = await repo.delete(id);
+    return ctx.json(result);
+  } catch (error) {
+    return ctx.json({ error }, 500);
+  }
+};
+
+export { create, list, remove };

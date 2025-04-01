@@ -8,6 +8,7 @@ import { Bindings } from 'types/bindings';
 
 import { ProductCategoryCreate } from 'controllers/productCategory/create.controller';
 import { ProductCategoryList } from 'controllers/productCategory/list.controller';
+import { ProductCategoryDelete } from 'controllers/productCategory/delete.controller';
 
 // Start a Hono app
 const app = new Hono<{ Bindings: Bindings }>();
@@ -24,6 +25,7 @@ openapi.use('*', prettyJSON(), logger(), async (ctx, next) => {
 
 openapi.get('/product-categories', ProductCategoryList);
 openapi.post('/product-categories', ProductCategoryCreate);
+openapi.delete('/product-categories/:id', ProductCategoryDelete);
 
 // Export the Hono app
 export default app;

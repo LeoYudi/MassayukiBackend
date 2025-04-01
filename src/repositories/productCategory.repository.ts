@@ -46,7 +46,7 @@ export class ProductCategoryRepository {
       let query = this.database.prepare(
         `DELETE FROM product_categories WHERE id=?;`
       );
-      query = query.bind([id]);
+      query = query.bind(id);
       return await query.run<ProductCategoryType>();
     } catch (err) {
       return { error: `Failed to run query: ${err}` };
