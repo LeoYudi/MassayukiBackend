@@ -1,19 +1,18 @@
-import { ProductCategoryType } from 'types/productCategory';
+import { PrismaD1 } from '@prisma/adapter-d1';
+import { PrismaClient } from '@prisma/client';
 
 export class ProductCategoryRepository {
-  database: D1Database;
+  prisma: PrismaClient;
 
   constructor(database: D1Database) {
-    this.database = database;
+    this.prisma = new PrismaClient({ adapter: new PrismaD1(database) });
   }
 
   async getById(id: number) {
     try {
-      let query = this.database.prepare(
-        'SELECT * FROM product_categories WHERE id=?;'
-      );
-      query = query.bind([id]);
-      return await query.run<ProductCategoryType[]>();
+      return await this.prisma.productCategory.findUnique({
+        where: { id },
+      });
     } catch (err) {
       return { error: `Failed to run query: ${err}` };
     }
@@ -21,8 +20,7 @@ export class ProductCategoryRepository {
 
   async listAll() {
     try {
-      const query = this.database.prepare('SELECT * FROM product_categories;');
-      return await query.run<ProductCategoryType[]>();
+      return await this.prisma.productCategory.findMany();
     } catch (err) {
       return { error: `Failed to run query: ${err}` };
     }
@@ -30,12 +28,7 @@ export class ProductCategoryRepository {
 
   async create(name: string) {
     try {
-      let query = this.database.prepare(
-        `INSERT INTO product_categories (id, name) VALUES (NULL, ?);`
-      );
-      console.log(query);
-      query = query.bind(name);
-      return await query.run<ProductCategoryType>();
+      return await this.prisma.productCategory.create({ data: { name } });
     } catch (err) {
       return { error: `Failed to run query: ${err}` };
     }
@@ -43,11 +36,7 @@ export class ProductCategoryRepository {
 
   async delete(id: number) {
     try {
-      let query = this.database.prepare(
-        `DELETE FROM product_categories WHERE id=?;`
-      );
-      query = query.bind(id);
-      return await query.run<ProductCategoryType>();
+      return await this.prisma.productCategory.delete({ where: { id } });
     } catch (err) {
       return { error: `Failed to run query: ${err}` };
     }

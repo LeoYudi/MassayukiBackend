@@ -4,7 +4,7 @@ import { number, z } from 'zod';
 export type ProductCategoryType = {
   id: number;
   name: string;
-  created_at: string;
+  createdAt: string;
 };
 
 export const ProductCategoryBodyZod = z.object({
@@ -14,5 +14,5 @@ export const ProductCategoryBodyZod = z.object({
 export const ProductCategoryReturnZod = z.object({
   id: number(),
   name: Str(),
-  created_at: DateTime(),
+  createdAt: DateTime(),
 });

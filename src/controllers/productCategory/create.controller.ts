@@ -29,12 +29,7 @@ export class ProductCategoryCreate extends OpenAPIRoute {
         content: {
           'application/json': {
             schema: z.object({
-              series: z.object({
-                success: Bool(),
-                result: z.object({
-                  productCategory: ProductCategoryReturnZod,
-                }),
-              }),
+              series: ProductCategoryReturnZod,
             }),
           },
         },

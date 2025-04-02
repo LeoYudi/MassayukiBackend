@@ -1,4 +1,4 @@
-import { Bool, OpenAPIRoute } from 'chanfana';
+import { OpenAPIRoute } from 'chanfana';
 import { z } from 'zod';
 import { Context } from 'hono';
 
@@ -17,10 +17,7 @@ export class ProductCategoryList extends OpenAPIRoute {
         content: {
           'application/json': {
             schema: z.object({
-              series: z.object({
-                success: Bool(),
-                result: z.array(ProductCategoryReturnZod),
-              }),
+              series: z.array(ProductCategoryReturnZod),
             }),
           },
         },

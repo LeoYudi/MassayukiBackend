@@ -28,6 +28,10 @@ const remove = async (ctx: Context<{ Bindings: Bindings }>, id: number) => {
   const repo = new ProductCategoryRepository(ctx.env.DB);
 
   try {
+    const categoryExists = await repo.getById(id);
+
+    if (!categoryExists) return ctx.json({ error: 'Category not found' }, 404);
+
     const result = await repo.delete(id);
     return ctx.json(result);
   } catch (error) {
