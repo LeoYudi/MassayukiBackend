@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS "ProductCategory";
+
 -- CreateTable
 CREATE TABLE
     "ProductCategory" (
@@ -5,6 +7,8 @@ CREATE TABLE
         "name" TEXT NOT NULL,
         "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
+
+DROP TABLE IF EXISTS "Product";
 
 -- CreateTable
 CREATE TABLE
@@ -18,6 +22,8 @@ CREATE TABLE
         CONSTRAINT "Product_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "ProductCategory" ("id") ON DELETE SET NULL ON UPDATE CASCADE
     );
 
+DROP TABLE IF EXISTS "Order";
+
 -- CreateTable
 CREATE TABLE
     "Order" (
@@ -29,6 +35,8 @@ CREATE TABLE
         "totalPrice" DECIMAL(10, 2),
         "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
+
+DROP TABLE IF EXISTS "OrderItem";
 
 -- CreateTable
 CREATE TABLE

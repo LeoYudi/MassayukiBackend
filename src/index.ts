@@ -15,6 +15,10 @@ import { ProductList } from 'controllers/product/list.controller';
 import { ProductDelete } from 'controllers/product/delete.controller';
 import { ProductUpdate } from 'controllers/product/update.controller';
 
+import { OrderCreate } from 'controllers/order/create.controller';
+import { OrderList } from 'controllers/order/list.controller';
+import { OrderDelete } from 'controllers/order/delete.controller';
+
 // Start a Hono app
 const app = new Hono<{ Bindings: Bindings }>();
 
@@ -36,6 +40,10 @@ openapi.get('/products', ProductList);
 openapi.post('/products', ProductCreate);
 openapi.delete('/products/:id', ProductDelete);
 openapi.patch('/products/:id', ProductUpdate);
+
+openapi.get('/orders', OrderList);
+openapi.post('/orders', OrderCreate);
+openapi.delete('/orders/:id', OrderDelete);
 
 // Export the Hono app
 export default app;

@@ -2,15 +2,15 @@ import { OpenAPIRoute } from 'chanfana';
 import { z } from 'zod';
 import { Context } from 'hono';
 
-import { ProductReturnZod } from 'types/product';
+import { OrderReturnZod } from 'types/order';
 import { Bindings } from 'types/bindings';
 
-import * as ProductServices from 'services/product.service';
+import * as OrderServices from 'services/order.service';
 
-export class ProductDelete extends OpenAPIRoute {
+export class OrderDelete extends OpenAPIRoute {
   schema = {
-    tags: ['Products'],
-    summary: 'Delete one Product',
+    tags: ['Orders'],
+    summary: 'Delete one Order',
     request: {
       params: z.object({
         id: z.string(),
@@ -18,11 +18,11 @@ export class ProductDelete extends OpenAPIRoute {
     },
     responses: {
       '200': {
-        description: 'Return the deleted product',
+        description: 'Return the deleted Order',
         content: {
           'application/json': {
             schema: z.object({
-              series: ProductReturnZod,
+              series: OrderReturnZod,
             }),
           },
         },
@@ -34,6 +34,6 @@ export class ProductDelete extends OpenAPIRoute {
     const data = await this.getValidatedData<typeof this.schema>();
     const { id } = data.params;
 
-    return await ProductServices.remove(ctx, +id);
+    return await OrderServices.remove(ctx, +id);
   }
 }
