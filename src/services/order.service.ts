@@ -16,7 +16,7 @@ const list = async (ctx: Context<{ Bindings: Bindings }>) => {
 
 const create = async (
   ctx: Context<{ Bindings: Bindings }>,
-  { totalPrice, customer, tableNumber, orderItems }: OrderType
+  { totalPrice, customer, tableNumber, orderItems, note }: OrderType
 ) => {
   const repo = new OrderRepository(ctx.env.DB);
 
@@ -25,6 +25,7 @@ const create = async (
       totalPrice,
       customer,
       tableNumber,
+      note,
       orderItems
     );
     return ctx.json(result);

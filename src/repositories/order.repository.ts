@@ -46,6 +46,7 @@ export class OrderRepository {
     totalPrice: number,
     customer: string,
     tableNumber: number,
+    note: string,
     orderItems: OrderItem[]
   ) {
     try {
@@ -55,6 +56,7 @@ export class OrderRepository {
           totalPrice,
           customer,
           tableNumber,
+          note,
           orderItems: { createMany: { data: orderItems } },
         },
       });

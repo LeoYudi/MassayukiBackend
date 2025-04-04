@@ -11,6 +11,7 @@ export type OrderType = {
   totalPrice: number;
   customer?: string;
   tableNumber?: number;
+  note?: string;
   orderItems: OrderItem[];
 };
 
@@ -18,6 +19,7 @@ export const OrderBodyZod = z.object({
   customer: Str({ required: false }),
   tableNumber: Num({ required: false }),
   totalPrice: Num(),
+  note: Str({ required: false }),
   orderItems: z.array(
     z.object({
       price: Num(),
@@ -34,6 +36,7 @@ export const OrderReturnZod = z.object({
   customer: Str(),
   tableNumber: Num(),
   totalPrice: Str(),
+  note: Str(),
   createdAt: DateTime(),
 });
 
@@ -44,6 +47,7 @@ export const OrderReturnWithJoinsZod = z.object({
   customer: Str(),
   tableNumber: Num(),
   totalPrice: Str(),
+  note: Str(),
   createdAt: DateTime(),
   orderItems: z.array(
     z.object({

@@ -37,12 +37,13 @@ export class OrderCreate extends OpenAPIRoute {
   async handle(ctx: Context<{ Bindings: Bindings }>) {
     const data = await this.getValidatedData<typeof this.schema>();
 
-    const { customer, orderItems, tableNumber, totalPrice } = data.body;
+    const { customer, orderItems, tableNumber, totalPrice, note } = data.body;
 
     return await OrderServices.create(ctx, {
       customer,
       orderItems: orderItems as any,
       totalPrice,
+      note,
       tableNumber,
     });
   }

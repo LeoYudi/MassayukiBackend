@@ -33,6 +33,7 @@ CREATE TABLE
         "paid" BOOLEAN NOT NULL,
         "paymentMethod" TEXT,
         "totalPrice" DECIMAL(10, 2),
+        'note' TEXT,
         "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
 
