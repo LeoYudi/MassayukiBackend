@@ -42,9 +42,14 @@ const pay = async (
   const repo = new OrderRepository(ctx.env.DB);
 
   try {
-    const orderExists = await repo.getById(id);
+    const orderExists: any = await repo.getById(id);
 
-    if (!orderExists) return ctx.json({ error: 'Not found' }, 404);
+    if (!orderExists) return ctx.json({ error: 'Order not found' }, 404);
+
+    if (orderExists.paid) return ctx.json({ error: 'Order already paid' }, 400);
+
+    const result = await repo.pay(id, paymentMethod);
+    return ctx.json(result);
   } catch (error) {
     return ctx.json({ error }, 500);
   }
@@ -54,9 +59,9 @@ const remove = async (ctx: Context<{ Bindings: Bindings }>, id: number) => {
   const repo = new OrderRepository(ctx.env.DB);
 
   try {
-    const categoryExists = await repo.getById(id);
+    const orderExists = await repo.getById(id);
 
-    if (!categoryExists) return ctx.json({ error: 'Category not found' }, 404);
+    if (!orderExists) return ctx.json({ error: 'Order not found' }, 404);
 
     const result = await repo.delete(id);
     return ctx.json(result);
@@ -65,4 +70,4 @@ const remove = async (ctx: Context<{ Bindings: Bindings }>, id: number) => {
   }
 };
 
-export { create, list, remove };
+export { create, list, remove, pay };
