@@ -11,15 +11,15 @@
 	"dependencies": {
 		"@prisma/adapter-d1": "^6.5.0",
 		"@prisma/client": "^6.5.0",
-		"chanfana": "^2.0.2",
-		"hono": "^4.4.7",
-		"zod": "^3.23.8"
+		"chanfana": "^2.8.0",
+		"hono": "^4.7.5",
+		"zod": "^3.24.2"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20250327.0",
+		"@cloudflare/workers-types": "^4.20250407.0",
 		"@types/node": "20.8.3",
-		"@types/service-worker-mock": "^2.0.1",
+		"@types/service-worker-mock": "^2.0.4",
 		"prisma": "^6.5.0",
-		"wrangler": "^4.6.0"
+		"wrangler": "^4.8.0"
 	}
 }

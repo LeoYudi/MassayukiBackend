@@ -21,9 +21,7 @@ export class ProductDelete extends OpenAPIRoute {
         description: 'Return the deleted product',
         content: {
           'application/json': {
-            schema: z.object({
-              series: ProductReturnZod,
-            }),
+            schema: ProductReturnZod,
           },
         },
       },

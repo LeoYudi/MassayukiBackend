@@ -16,9 +16,7 @@ export class OrderList extends OpenAPIRoute {
         description: 'Returns all Orders',
         content: {
           'application/json': {
-            schema: z.object({
-              series: z.array(OrderReturnWithJoinsZod),
-            }),
+            schema: z.array(OrderReturnWithJoinsZod),
           },
         },
       },

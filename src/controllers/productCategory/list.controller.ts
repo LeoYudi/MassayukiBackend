@@ -16,9 +16,7 @@ export class ProductCategoryList extends OpenAPIRoute {
         description: 'Returns all product categories',
         content: {
           'application/json': {
-            schema: z.object({
-              series: z.array(ProductCategoryReturnZod),
-            }),
+            schema: z.array(ProductCategoryReturnZod),
           },
         },
       },

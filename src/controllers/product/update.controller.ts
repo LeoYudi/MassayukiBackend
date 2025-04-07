@@ -28,9 +28,7 @@ export class ProductUpdate extends OpenAPIRoute {
         description: 'Returns the updated product',
         content: {
           'application/json': {
-            schema: z.object({
-              series: ProductReturnZod,
-            }),
+            schema: ProductReturnZod,
           },
         },
       },

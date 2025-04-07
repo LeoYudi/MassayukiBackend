@@ -26,7 +26,7 @@ export class ProductCreate extends OpenAPIRoute {
         content: {
           'application/json': {
             schema: z.object({
-              series: ProductReturnZod,
+              ProductReturnZod,
             }),
           },
         },

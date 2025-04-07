@@ -25,9 +25,7 @@ export class OrderCreate extends OpenAPIRoute {
         description: 'Returns the created order',
         content: {
           'application/json': {
-            schema: z.object({
-              series: OrderReturnZod,
-            }),
+            schema: OrderReturnZod,
           },
         },
       },

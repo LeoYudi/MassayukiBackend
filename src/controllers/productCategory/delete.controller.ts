@@ -21,9 +21,7 @@ export class ProductCategoryDelete extends OpenAPIRoute {
         description: 'Returns all product categories',
         content: {
           'application/json': {
-            schema: z.object({
-              series: ProductCategoryReturnZod,
-            }),
+            schema: ProductCategoryReturnZod,
           },
         },
       },

@@ -30,9 +30,7 @@ export class OrderPay extends OpenAPIRoute {
         description: 'Returns the updated order',
         content: {
           'application/json': {
-            schema: z.object({
-              series: OrderReturnZod,
-            }),
+            schema: OrderReturnZod,
           },
         },
       },

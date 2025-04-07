@@ -16,9 +16,7 @@ export class ProductList extends OpenAPIRoute {
         description: 'Returns all products',
         content: {
           'application/json': {
-            schema: z.object({
-              series: z.array(ProductReturnZod),
-            }),
+            schema: z.array(ProductReturnZod),
           },
         },
       },

@@ -21,9 +21,7 @@ export class OrderDelete extends OpenAPIRoute {
         description: 'Return the deleted Order',
         content: {
           'application/json': {
-            schema: z.object({
-              series: OrderReturnZod,
-            }),
+            schema: OrderReturnZod,
           },
         },
       },

@@ -51,3 +51,14 @@ model OrderItem {
   price     Decimal
   createdAt DateTime @default(now())
 }
+
+model Report {
+  id        Int      @id @default(autoincrement())
+  pix       Decimal
+  credit    Decimal
+  debit     Decimal
+  money     Decimal
+  type      String
+  date      DateTime
+  createdAt DateTime @default(now())
+}
