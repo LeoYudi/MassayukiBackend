@@ -12,6 +12,9 @@ export class ProductRepository {
     try {
       return await this.prisma.product.findUnique({
         where: { id },
+        include: {
+          category: true,
+        },
       });
     } catch (err) {
       return { error: `Failed to run query: ${err}` };
@@ -20,7 +23,9 @@ export class ProductRepository {
 
   async listAll() {
     try {
-      return await this.prisma.product.findMany();
+      return await this.prisma.product.findMany({
+        include: { category: true },
+      });
     } catch (err) {
       return { error: `Failed to run query: ${err}` };
     }

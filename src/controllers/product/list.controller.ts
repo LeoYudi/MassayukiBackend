@@ -2,7 +2,7 @@ import { OpenAPIRoute } from 'chanfana';
 import { z } from 'zod';
 import { Context } from 'hono';
 
-import { ProductReturnZod } from 'types/product';
+import { ProductReturnWithJoinsZod } from 'types/product';
 import { Bindings } from 'types/bindings';
 
 import * as ProductServices from 'services/product.service';
@@ -16,7 +16,7 @@ export class ProductList extends OpenAPIRoute {
         description: 'Returns all products',
         content: {
           'application/json': {
-            schema: z.array(ProductReturnZod),
+            schema: z.array(ProductReturnWithJoinsZod),
           },
         },
       },

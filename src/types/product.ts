@@ -23,3 +23,17 @@ export const ProductReturnZod = z.object({
   categoryId: Num(),
   createdAt: DateTime(),
 });
+
+export const ProductReturnWithJoinsZod = z.object({
+  id: Num(),
+  name: Str(),
+  description: Str(),
+  price: Str({ default: '10.21' }),
+  categoryId: Num(),
+  createdAt: DateTime(),
+  category: z.object({
+    id: Num(),
+    name: Str(),
+    createdAt: DateTime(),
+  }),
+});
