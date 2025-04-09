@@ -16,7 +16,10 @@
       "database_name": "massayuki-db",
       "database_id": "2be9c7a3-51fe-4906-8e72-eb734a7ad17e"
     }
-  ]
+  ],
+	"vars": {
+		"API_KEY": "chave123"
+	}
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement

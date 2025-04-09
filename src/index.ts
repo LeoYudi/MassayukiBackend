@@ -1,5 +1,6 @@
 import { fromHono } from 'chanfana';
 import { Hono } from 'hono';
+import { cors } from 'hono/cors';
 import { bearerAuth } from 'hono/bearer-auth';
 import { logger } from 'hono/logger';
 import { prettyJSON } from 'hono/pretty-json';
@@ -19,6 +20,7 @@ import { OrderCreate } from 'controllers/order/create.controller';
 import { OrderList } from 'controllers/order/list.controller';
 import { OrderDelete } from 'controllers/order/delete.controller';
 import { OrderPay } from 'controllers/order/pay.controller';
+import { ReportCreate } from 'controllers/report/create.controller';
 
 // Start a Hono app
 const app = new Hono<{ Bindings: Bindings }>();
@@ -27,6 +29,8 @@ const app = new Hono<{ Bindings: Bindings }>();
 const openapi = fromHono(app, {
   docs_url: '/',
 });
+
+openapi.use(cors());
 
 openapi.use('*', prettyJSON(), logger(), async (ctx, next) => {
   const auth = bearerAuth({ token: ctx.env.API_KEY });
@@ -46,6 +50,8 @@ openapi.get('/orders', OrderList);
 openapi.post('/orders', OrderCreate);
 openapi.delete('/orders/:id', OrderDelete);
 openapi.patch('/orders/:id', OrderPay);
+
+openapi.post('/reports', ReportCreate);
 
 // Export the Hono app
 export default app;

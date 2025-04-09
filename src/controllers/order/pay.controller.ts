@@ -1,4 +1,4 @@
-import { OpenAPIRoute } from 'chanfana';
+import { Enumeration, OpenAPIRoute } from 'chanfana';
 import { z } from 'zod';
 import { Context } from 'hono';
 
@@ -16,7 +16,9 @@ export class OrderPay extends OpenAPIRoute {
         content: {
           'application/json': {
             schema: z.object({
-              paymentMethod: z.string(),
+              paymentMethod: Enumeration({
+                values: ['pix', 'credit', 'debit', 'money'],
+              }),
             }),
           },
         },
