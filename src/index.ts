@@ -21,6 +21,7 @@ import { OrderList } from 'controllers/order/list.controller';
 import { OrderDelete } from 'controllers/order/delete.controller';
 import { OrderPay } from 'controllers/order/pay.controller';
 import { ReportCreate } from 'controllers/report/create.controller';
+import { ReportList } from 'controllers/report/list.controller';
 
 // Start a Hono app
 const app = new Hono<{ Bindings: Bindings }>();
@@ -51,6 +52,7 @@ openapi.post('/orders', OrderCreate);
 openapi.delete('/orders/:id', OrderDelete);
 openapi.patch('/orders/:id', OrderPay);
 
+openapi.get('/reports', ReportList);
 openapi.post('/reports', ReportCreate);
 
 // Export the Hono app
