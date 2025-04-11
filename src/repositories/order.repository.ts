@@ -27,15 +27,14 @@ export class OrderRepository {
   }
 
   async listAll(dateStart?: Date, dateEnd?: Date, paid?: boolean) {
-    let where = {};
-    if (dateStart && dateEnd && paid)
-      where = {
-        AND: [
-          { createdAt: { gte: dateStart } },
-          { createdAt: { lte: dateEnd } },
-        ],
-        paid,
-      };
+    let where: any = {
+      AND: [],
+    };
+    if (dateStart) where.AND.push({ createdAt: { gte: dateStart } });
+
+    if (dateEnd) where.AND.push({ createdAt: { lte: dateEnd } });
+
+    if (paid) where.paid = paid;
 
     try {
       return await this.prisma.order.findMany({

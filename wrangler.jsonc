@@ -19,6 +19,9 @@
   ],
 	"vars": {
 		"API_KEY": "chave123"
+	},
+	"triggers": {
+		"crons": ["0 0 1 * *"]
 	}
 	/**
 	 * Smart Placement

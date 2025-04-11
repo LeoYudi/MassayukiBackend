@@ -23,6 +23,8 @@ import { OrderPay } from 'controllers/order/pay.controller';
 import { ReportCreate } from 'controllers/report/create.controller';
 import { ReportList } from 'controllers/report/list.controller';
 
+import { scheduled } from 'cron';
+
 // Start a Hono app
 const app = new Hono<{ Bindings: Bindings }>();
 
@@ -56,4 +58,4 @@ openapi.get('/reports', ReportList);
 openapi.post('/reports', ReportCreate);
 
 // Export the Hono app
-export default app;
+export default { ...app, scheduled };
