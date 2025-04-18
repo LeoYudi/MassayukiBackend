@@ -21,8 +21,22 @@
 		"API_KEY": "chave123"
 	},
 	"triggers": {
-		"crons": ["0 0 1 * *"]
-	}
+		"crons": ["0 0 1 * *"] // first day of every month
+	},
+	 "durable_objects": {
+		"bindings": [{
+			"name": "ORDER_CHAT",
+			"class_name": "OrderChat"
+		}]
+	 },
+	 "migrations": [
+		{
+			"tag": "v1",
+			"new_classes": [
+				"OrderChat"
+			]
+		}
+	]
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement

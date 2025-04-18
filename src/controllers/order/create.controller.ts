@@ -1,5 +1,4 @@
 import { OpenAPIRoute } from 'chanfana';
-import { z } from 'zod';
 import { Context } from 'hono';
 
 import { OrderBodyZod, OrderReturnZod } from 'types/order';

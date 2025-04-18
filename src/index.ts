@@ -1,11 +1,12 @@
 import { fromHono } from 'chanfana';
 import { Hono } from 'hono';
-import { cors } from 'hono/cors';
 import { bearerAuth } from 'hono/bearer-auth';
 import { logger } from 'hono/logger';
 import { prettyJSON } from 'hono/pretty-json';
 
 import { Bindings } from 'types/bindings';
+
+import { customCors } from 'middlewares/customCors';
 
 import { ProductCategoryCreate } from 'controllers/productCategory/create.controller';
 import { ProductCategoryList } from 'controllers/productCategory/list.controller';
@@ -25,6 +26,11 @@ import { ReportList } from 'controllers/report/list.controller';
 
 import { scheduled } from 'cron';
 
+import {
+  OrderChat,
+  OrderChatRoute,
+} from 'controllers/sockets/createOrder.controller';
+
 // Start a Hono app
 const app = new Hono<{ Bindings: Bindings }>();
 
@@ -33,12 +39,14 @@ const openapi = fromHono(app, {
   docs_url: '/',
 });
 
-openapi.use(cors());
+openapi.use(customCors);
 
 openapi.use('*', prettyJSON(), logger(), async (ctx, next) => {
   const auth = bearerAuth({ token: ctx.env.API_KEY });
   return auth(ctx, next);
 });
+
+openapi.get('/connect', OrderChatRoute);
 
 openapi.get('/product-categories', ProductCategoryList);
 openapi.post('/product-categories', ProductCategoryCreate);
@@ -59,3 +67,5 @@ openapi.post('/reports', ReportCreate);
 
 // Export the Hono app
 export default { ...app, scheduled };
+
+export { OrderChat };
